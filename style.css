@@ -1,3 +1,4 @@
+/* Reset e background */
 body, html {
     margin: 0;
     padding: 0;
@@ -17,6 +18,7 @@ header {
     align-items: center;
     padding: 15px 20px;
     box-sizing: border-box;
+    flex-wrap: wrap;
 }
 header img {
     height: 60px;
@@ -30,7 +32,7 @@ header h1 {
     font-size: 1.8rem;
 }
 
-/* Barra lateral esquerda fixa */
+/* Barra lateral esquerda */
 .left-panel {
     position: fixed;
     top: 100px;
@@ -42,23 +44,14 @@ header h1 {
     z-index: 1000;
 }
 
-/* Texto explicativo */
-.explanation {
+/* Texto explicativo e tutorial */
+.explanation, .tutorial {
     background: rgba(255,255,255,0.9);
     color: #111;
     padding: 15px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     text-align: left;
-}
-
-/* Tutorial */
-.tutorial {
-    background: rgba(255,255,255,0.9);
-    color: #111;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 .tutorial h3 {
     margin-top: 0;
@@ -71,13 +64,14 @@ header h1 {
     margin-bottom: 10px;
 }
 
-/* Conteúdo principal (organograma) */
+/* Conteúdo principal */
 .content {
     display: flex;
-    justify-content: center; /* centralizado */
+    justify-content: center;
     align-items: flex-start;
     padding: 20px;
     gap: 40px;
+    margin-left: 320px; /* espaço para barra lateral */
 }
 
 .container {
@@ -116,10 +110,6 @@ header h1 {
     background: #4e73df;
     margin: auto;
 }
-@keyframes fadeIn {
-    from {opacity:0;}
-    to {opacity:1;}
-}
 .horizontal {
     display: flex;
     justify-content: center;
@@ -144,7 +134,25 @@ header h1 {
     overflow-y: auto;
 }
 
-/* Ajustes para celular */
+/* Animação */
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+/* --------------------- Responsividade --------------------- */
+
+/* Tablet e telas médias */
+@media (max-width: 1024px) {
+    .left-panel, .sidebar {
+        width: 220px;
+    }
+    .content {
+        margin-left: 240px;
+    }
+}
+
+/* Celular grande/médio */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
@@ -157,40 +165,51 @@ header h1 {
         font-size: 1.4rem;
     }
 
-    /* Painel lateral vira bloco no topo */
-    .left-panel {
+    .left-panel, .sidebar {
         position: relative;
         top: 0;
         left: 0;
-        width: 100%;
+        width: 95%;
+        margin: 0 auto 10px auto;
         padding: 10px;
         gap: 10px;
     }
 
-    /* Ajuste dos cards */
+    .content {
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px;
+        margin-left: 0; /* remove espaço da left-panel do desktop */
+    }
+
     .node {
         font-size: 0.9rem;
         padding: 10px 15px;
         margin: 5px;
     }
 
-    /* Organograma centralizado e com menos espaço */
-    .content {
-        flex-direction: column;
-        gap: 20px;
-        padding: 10px;
-    }
-
-    /* Barra lateral ocupa a tela inteira no celular */
     .sidebar {
-        width: 100%;
-        height: auto;
-        position: fixed;
+        width: 95%;
+        left: 50%;
+        transform: translateX(-50%);
         bottom: 0;
         top: auto;
         border-left: none;
         border-top: 5px solid #4e73df;
+        position: fixed;
     }
 }
 
-
+/* Celular pequeno */
+@media (max-width: 480px) {
+    .node {
+        width: 90%;
+        max-width: 300px;
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+    .explanation, .tutorial {
+        font-size: 13px;
+        padding: 10px;
+    }
+}
