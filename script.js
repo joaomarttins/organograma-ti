@@ -46,3 +46,42 @@ document.querySelectorAll(".node").forEach(node => {
         e.stopPropagation();
     });
 });
+
+// Seleciona modal e elementos
+const modal = document.getElementById("modal");
+const modalTitle = document.getElementById("modalTitle");
+const modalText = document.getElementById("modalText");
+const modalClose = document.getElementById("modalClose");
+
+// Quando clicar em um node, abre modal
+document.querySelectorAll(".node").forEach(node => {
+    node.addEventListener("click", (e) => {
+        const name = node.dataset.name;
+        if(name){ // só abre modal se tiver nome
+            modalTitle.innerText = name;
+            modalText.innerText = functionsData[name] || "Função não cadastrada.";
+            modal.style.display = "flex";
+        }
+    });
+});
+
+// Fecha modal ao clicar no X
+modalClose.addEventListener("click", () => {
+    modal.style.display = "none";
+});
+
+// Fecha modal ao clicar fora do conteúdo
+modal.addEventListener("click", (e) => {
+    if(e.target === modal){
+        modal.style.display = "none";
+    }
+});
+
+// Fecha modal ao apertar a tecla "Esc" (opcional)
+document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape"){
+        modal.style.display = "none";
+    }
+});
+
+
