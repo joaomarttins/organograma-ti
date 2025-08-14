@@ -1,4 +1,4 @@
-// ----------------- Funções dos colaboradores -----------------
+// Funções dos colaboradores
 const functionsData = {
     "Eliane": "Responsável pela direção geral e decisões estratégicas.",
     "Fagner": "Responsável pela manutenção e suporte técnico da rede e sistemas internos.",
@@ -7,25 +7,46 @@ const functionsData = {
     "Jonas": "Auxilia no atendimento de chamados e suporte aos usuários."
 };
 
-// ----------------- Toggle do organograma -----------------
+// Toggle do organograma
 const toggleNode = document.getElementById("toggle-organograma");
 toggleNode.addEventListener("click", () => {
     const elianeNode = document.getElementById("eliane");
     const elianeLine = document.getElementById("eliane-line");
     const children = document.getElementById("all-children");
 
-    if(elianeNode.style.display === "none" || elianeNode.style.display === "") {
-        elianeNode.style.display = "block";
-        elianeLine.style.display = "block";
-        children.style.display = "block";
-    } else {
+    if (elianeNode.style.display === "block") {
         elianeNode.style.display = "none";
         elianeLine.style.display = "none";
         children.style.display = "none";
+    } else {
+        elianeNode.style.display = "block";
+        elianeLine.style.display = "block";
+        children.style.display = "block";
     }
 });
 
-// ----------------- Clique único abre sidebar, duplo fecha -----------------
+// Modal
+const modal = document.getElementById("modal");
+const modalTitle = document.getElementById("modalTitle");
+const modalText = document.getElementById("modalText");
+const modalClose = document.getElementById("modalClose");
+
+function openModal(name) {
+    modalTitle.innerText = name;
+    modalText.innerText = functionsData[name] || "Função não cadastrada.";
+    modal.style.display = "flex";
+}
+
+function closeModal() {
+    modal.style.display = "none";
+}
+
+// Fecha modal ao clicar no X ou fora do conteúdo
+modalClose.addEventListener("click", closeModal);
+modal.addEventListener("click", (e) => { if(e.target === modal) closeModal(); });
+document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
+
+// Clique único/duplo para PC/Modal
 document.querySelectorAll(".node").forEach(node => {
     let clickCount = 0;
     node.addEventListener("click", (e) => {
@@ -34,54 +55,21 @@ document.querySelectorAll(".node").forEach(node => {
         const sidebar = document.getElementById("sidebar");
 
         setTimeout(() => {
-            if(clickCount === 1 && name) {
-                // Abre sidebar ou modal
-                if(window.innerWidth > 768){ // PC: sidebar
+            if (clickCount === 1 && name) {
+                if (window.innerWidth > 768) { // PC -> Sidebar
                     document.getElementById("sidebar-name").innerText = name;
-                    document.getElementById("sidebar-function").innerText = functionsData[name] || "Função não cadastrada.";
+                    document.getElementById("sidebar-function").innerText = functionsData[name];
                     sidebar.style.display = "block";
-                } else { // Celular: modal
+                } else { // Celular -> Modal
                     openModal(name);
                 }
-            } else if(clickCount === 2){
+            } else if (clickCount === 2) { // Duplo clique fecha tudo
                 sidebar.style.display = "none";
                 closeModal();
             }
             clickCount = 0;
         }, 250);
+
         e.stopPropagation();
     });
-});
-
-// ----------------- Modal -----------------
-const modal = document.getElementById("modal");
-const modalTitle = document.getElementById("modalTitle");
-const modalText = document.getElementById("modalText");
-const modalClose = document.getElementById("modalClose");
-
-function openModal(name){
-    modalTitle.innerText = name;
-    modalText.innerText = functionsData[name] || "Função não cadastrada.";
-    modal.style.display = "flex";
-}
-
-function closeModal(){
-    modal.style.display = "none";
-}
-
-// Fecha modal ao clicar no X
-modalClose.addEventListener("click", closeModal);
-
-// Fecha modal ao clicar fora do conteúdo
-modal.addEventListener("click", (e) => {
-    if(e.target === modal){
-        closeModal();
-    }
-});
-
-// Fecha modal ao apertar a tecla "Esc"
-document.addEventListener("keydown", (e) => {
-    if(e.key === "Escape"){
-        closeModal();
-    }
 });
