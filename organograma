@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Organograma e Funções do TI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <img src="logo.jpg" alt="Logo da Prefeitura">
+    <h1>Organograma e Funções do TI</h1>
+</header>
+
+<!-- Barra lateral esquerda -->
+<div class="left-panel">
+    <div class="explanation">
+        Este organograma foi desenvolvido para mapear a estrutura do setor de TI, destacando os cargos, responsabilidades e relações hierárquicas de cada colaborador. Ele permite visualizar de forma clara quem é responsável por cada função, facilitando o entendimento da equipe e a comunicação interna.
+    </div>
+
+    <div class="tutorial">
+        <h3>Como usar este organograma</h3>
+        <ul>
+            <li><strong>Clique único</strong> em qualquer caixa: abre a barra lateral com informações do colaborador.</li>
+            <li><strong>Clique duplo</strong> na mesma caixa: fecha a barra lateral.</li>
+            <li><strong>Chefe com subordinados</strong> (como Eliane): clicar na caixa alterna a visualização dos filhos no organograma.</li>
+            <li>O texto explicativo acima ajuda a entender a estrutura e as funções de cada membro.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Conteúdo principal -->
+<div class="content">
+    <div class="container">
+        <!-- Caixa para abrir o organograma -->
+        <div class="node" id="toggle-organograma">Clique aqui para abrir o organograma</div>
+
+        <!-- Eliane -->
+        <div class="node" id="eliane" data-name="Eliane" style="display:none;">Eliane - Diretora</div>
+        <div class="line" id="eliane-line" style="display:none;"></div>
+
+        <!-- Filhos da Eliane -->
+        <div class="children" id="all-children" style="display:none;">
+            <div class="horizontal">
+                <div class="node" data-name="Fagner">Fagner - Técnico em TI</div>
+                <div class="node" data-name="Pss">Pss - Técnico em TI</div>
+            </div>
+            <div class="line"></div>
+            <div class="horizontal">
+                <div class="node" data-name="João">João - Auxiliar de TI</div>
+                <div class="node" data-name="Jonas">Jonas - Auxiliar de TI</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sidebar direita -->
+<div class="sidebar" id="sidebar">
+    <h2 id="sidebar-name"></h2>
+    <p id="sidebar-function"></p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

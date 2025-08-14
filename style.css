@@ -1,0 +1,145 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('fundo.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+/* Header */
+header {
+    width: 100%;
+    background: #4e73df;
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    box-sizing: border-box;
+}
+header img {
+    height: 60px;
+    width: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+/* Barra lateral esquerda fixa */
+.left-panel {
+    position: fixed;
+    top: 100px;
+    left: 20px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 1000;
+}
+
+/* Texto explicativo */
+.explanation {
+    background: rgba(255,255,255,0.9);
+    color: #111;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    text-align: left;
+}
+
+/* Tutorial */
+.tutorial {
+    background: rgba(255,255,255,0.9);
+    color: #111;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.tutorial h3 {
+    margin-top: 0;
+    color: #4e73df;
+}
+.tutorial ul {
+    padding-left: 20px;
+}
+.tutorial li {
+    margin-bottom: 10px;
+}
+
+/* Conteúdo principal (organograma) */
+.content {
+    display: flex;
+    justify-content: center; /* centralizado */
+    align-items: flex-start;
+    padding: 20px;
+    gap: 40px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Caixas do organograma */
+.node {
+    background: linear-gradient(135deg, #4e73df, #2e59d9);
+    color: white;
+    padding: 14px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+.node:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+/* Filhos e linhas */
+.children {
+    display: none;
+    margin-top: 15px;
+    animation: fadeIn 0.4s ease;
+}
+.line {
+    width: 2px;
+    height: 20px;
+    background: #4e73df;
+    margin: auto;
+}
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+.horizontal {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Sidebar direita */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 300px;
+    background: rgba(255,255,255,0.95);
+    box-shadow: -3px 0 15px rgba(0,0,0,0.2);
+    padding: 20px;
+    border-left: 5px solid #4e73df;
+    color: #333;
+    display: none;
+    z-index: 1000;
+    overflow-y: auto;
+}
