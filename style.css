@@ -16,12 +16,12 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 25px;
     flex-wrap: wrap;
     text-align: center;
 }
 header img {
-    height: 70px;
+    height: 90px;
     width: auto;
     border-radius: 8px;
     object-fit: cover;
@@ -29,23 +29,23 @@ header img {
 }
 header h1 {
     margin: 0;
-    font-size: 2rem;
+    font-size: 2.4rem;
 }
 
 /* Left panel */
 .left-panel {
     position: fixed;
-    top: 100px;
+    top: 120px;
     left: 20px;
-    width: 300px;
+    width: 320px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
     z-index: 1000;
     background: rgba(255,255,255,0.95);
-    padding: 20px;
+    padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     box-sizing: border-box;
 }
 
@@ -54,31 +54,31 @@ header h1 {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 40px;
-    padding: 30px;
-    margin-left: 340px; /* espaço para left-panel desktop */
+    gap: 50px;
+    padding: 40px;
+    margin-left: 360px; /* espaço para left-panel desktop */
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px;
+    gap: 30px;
 }
 
 /* Caixas do organograma */
 .node {
     background: linear-gradient(135deg, #4e73df, #2e59d9);
     color: white;
-    padding: 18px 28px;
+    padding: 20px 35px;
     border-radius: 12px;
     cursor: pointer;
     display: inline-block;
-    margin: 12px;
+    margin: 15px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 0 6px 20px rgba(0,0,0,0.4);
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 .node:hover {
     transform: translateY(-3px);
@@ -88,19 +88,19 @@ header h1 {
 /* Filhos e linhas */
 .children {
     display: none;
-    margin-top: 20px;
+    margin-top: 25px;
     animation: fadeIn 0.4s ease;
 }
 .line {
-    width: 2px;
-    height: 25px;
+    width: 3px;
+    height: 30px;
     background: #4e73df;
     margin: auto;
 }
 .horizontal {
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: 30px;
     flex-wrap: wrap;
 }
 
@@ -110,9 +110,9 @@ header h1 {
     top: 0;
     right: 0;
     height: 100vh;
-    width: 300px;
+    width: 320px;
     background: rgba(255,255,255,0.95);
-    box-shadow: -3px 0 15px rgba(0,0,0,0.2);
+    box-shadow: -3px 0 20px rgba(0,0,0,0.3);
     padding: 25px;
     border-left: 5px solid #4e73df;
     color: #333;
@@ -137,6 +137,11 @@ header h1 {
     }
     .content {
         margin-left: 260px;
+        gap: 35px;
+    }
+    .node {
+        font-size: 1.1rem;
+        padding: 18px 30px;
     }
 }
 
@@ -146,7 +151,7 @@ header h1 {
         height: 80px;
     }
     header h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     /* Left panel topo */
@@ -162,16 +167,16 @@ header h1 {
     /* Conteúdo centralizado */
     .content {
         flex-direction: column;
-        gap: 25px;
+        gap: 30px;
         padding: 20px;
         margin-left: 0;
     }
 
     /* Caixas maiores */
     .node {
-        font-size: 1.1rem;
-        padding: 15px 20px;
-        margin: 8px;
+        font-size: 1.2rem;
+        padding: 18px 25px;
+        margin: 10px;
     }
 
     /* Sidebar fixa rodapé */
@@ -192,17 +197,15 @@ header h1 {
 @media (max-width: 480px) {
     .node {
         width: 95%;
-        max-width: 320px;
-        font-size: 1rem;
-        padding: 12px 18px;
+        max-width: 340px;
+        font-size: 1.1rem;
+        padding: 15px 20px;
     }
     .left-panel, .sidebar {
         padding: 15px;
     }
     .explanation, .tutorial {
-        font-size: 14px;
-        padding: 12px;
+        font-size: 15px;
+        padding: 15px;
     }
 }
-
-
