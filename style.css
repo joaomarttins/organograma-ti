@@ -16,13 +16,12 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px 20px;
-    box-sizing: border-box;
+    padding: 20px;
     flex-wrap: wrap;
     text-align: center;
 }
 header img {
-    height: 60px;
+    height: 70px;
     width: auto;
     border-radius: 8px;
     object-fit: cover;
@@ -30,7 +29,7 @@ header img {
 }
 header h1 {
     margin: 0;
-    font-size: 1.8rem;
+    font-size: 2rem;
 }
 
 /* Left panel */
@@ -44,7 +43,7 @@ header h1 {
     gap: 20px;
     z-index: 1000;
     background: rgba(255,255,255,0.95);
-    padding: 15px;
+    padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     box-sizing: border-box;
@@ -56,7 +55,7 @@ header h1 {
     justify-content: center;
     align-items: flex-start;
     gap: 40px;
-    padding: 20px;
+    padding: 30px;
     margin-left: 340px; /* espaço para left-panel desktop */
 }
 
@@ -64,21 +63,22 @@ header h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 25px;
 }
 
 /* Caixas do organograma */
 .node {
     background: linear-gradient(135deg, #4e73df, #2e59d9);
     color: white;
-    padding: 14px 24px;
-    border-radius: 10px;
+    padding: 18px 28px;
+    border-radius: 12px;
     cursor: pointer;
     display: inline-block;
-    margin: 10px;
+    margin: 12px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 0 6px 20px rgba(0,0,0,0.4);
     text-align: center;
+    font-size: 1rem;
 }
 .node:hover {
     transform: translateY(-3px);
@@ -88,19 +88,19 @@ header h1 {
 /* Filhos e linhas */
 .children {
     display: none;
-    margin-top: 15px;
+    margin-top: 20px;
     animation: fadeIn 0.4s ease;
 }
 .line {
     width: 2px;
-    height: 20px;
+    height: 25px;
     background: #4e73df;
     margin: auto;
 }
 .horizontal {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 25px;
     flex-wrap: wrap;
 }
 
@@ -113,7 +113,7 @@ header h1 {
     width: 300px;
     background: rgba(255,255,255,0.95);
     box-shadow: -3px 0 15px rgba(0,0,0,0.2);
-    padding: 20px;
+    padding: 25px;
     border-left: 5px solid #4e73df;
     color: #333;
     display: none;
@@ -132,20 +132,21 @@ header h1 {
 /* Tablet e telas médias */
 @media (max-width: 1024px) {
     .left-panel, .sidebar {
-        width: 220px;
+        width: 240px;
+        padding: 20px;
     }
     .content {
-        margin-left: 240px;
+        margin-left: 260px;
     }
 }
 
 /* Celular médio/grande */
 @media (max-width: 768px) {
     header img {
-        margin-bottom: 5px;
+        height: 80px;
     }
     header h1 {
-        font-size: 1.4rem;
+        font-size: 1.8rem;
     }
 
     /* Left panel topo */
@@ -154,22 +155,23 @@ header h1 {
         top: 0;
         left: 0;
         width: 95%;
-        margin: 10px auto;
+        margin: 15px auto;
+        padding: 20px;
     }
 
     /* Conteúdo centralizado */
     .content {
         flex-direction: column;
-        gap: 20px;
-        padding: 10px;
+        gap: 25px;
+        padding: 20px;
         margin-left: 0;
     }
 
-    /* Caixas menores */
+    /* Caixas maiores */
     .node {
-        font-size: 0.9rem;
-        padding: 10px 15px;
-        margin: 5px;
+        font-size: 1.1rem;
+        padding: 15px 20px;
+        margin: 8px;
     }
 
     /* Sidebar fixa rodapé */
@@ -182,22 +184,23 @@ header h1 {
         border-left: none;
         border-top: 5px solid #4e73df;
         position: fixed;
+        padding: 20px;
     }
 }
 
 /* Celular pequeno */
 @media (max-width: 480px) {
     .node {
-        width: 90%;
-        max-width: 300px;
-        font-size: 0.8rem;
-        padding: 8px 12px;
+        width: 95%;
+        max-width: 320px;
+        font-size: 1rem;
+        padding: 12px 18px;
     }
     .left-panel, .sidebar {
-        padding: 10px;
+        padding: 15px;
     }
     .explanation, .tutorial {
-        font-size: 13px;
-        padding: 10px;
+        font-size: 14px;
+        padding: 12px;
     }
 }
