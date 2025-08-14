@@ -3,7 +3,154 @@
 <head>
 <meta charset="UTF-8">
 <title>Organograma e Funções do TI</title>
-<link rel="stylesheet" href="style.css">
+<style>
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('fundo.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+/* Header */
+header {
+    width: 100%;
+    background: #4e73df;
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    box-sizing: border-box;
+}
+header img {
+    height: 60px;
+    width: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+/* Barra lateral esquerda fixa */
+.left-panel {
+    position: fixed;
+    top: 100px;
+    left: 20px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 1000;
+}
+
+/* Texto explicativo */
+.explanation {
+    background: rgba(255,255,255,0.9);
+    color: #111;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    text-align: left;
+}
+
+/* Tutorial */
+.tutorial {
+    background: rgba(255,255,255,0.9);
+    color: #111;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.tutorial h3 {
+    margin-top: 0;
+    color: #4e73df;
+}
+.tutorial ul {
+    padding-left: 20px;
+}
+.tutorial li {
+    margin-bottom: 10px;
+}
+
+/* Organograma */
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 40px;
+    margin-left: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Caixas */
+.node {
+    background: linear-gradient(135deg, #4e73df, #2e59d9);
+    color: white;
+    padding: 14px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+.node:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+/* cargos e linhas */
+.children {
+    display: none;
+    margin-top: 15px;
+    animation: fadeIn 0.4s ease;
+}
+.line {
+    width: 2px;
+    height: 20px;
+    background: #4e73df;
+    margin: auto;
+}
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+.horizontal {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Sidebar direita */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 300px;
+    background: rgba(255,255,255,0.95);
+    box-shadow: -3px 0 15px rgba(0,0,0,0.2);
+    padding: 20px;
+    border-left: 5px solid #4e73df;
+    color: #333;
+    display: none;
+    z-index: 1000;
+    overflow-y: auto;
+}
+</style>
 </head>
 <body>
 
@@ -15,15 +162,14 @@
 <!-- Barra lateral esquerda -->
 <div class="left-panel">
     <div class="explanation">
-        Este organograma foi desenvolvido para mapear a estrutura do setor de TI, destacando os cargos, responsabilidades e relações hierárquicas de cada colaborador. Ele permite visualizar de forma clara quem é responsável por cada função, facilitando o entendimento da equipe e a comunicação interna.
+        Este organograma foi desenvolvido para mapear a estrutura do setor de TI, destacando os cargos, responsabilidades e hierarquia de cada colaborador. Ele permite visualizar de forma clara quem é responsável por cada função, facilitando o entendimento da equipe e a comunicação interna.
     </div>
 
     <div class="tutorial">
         <h3>Como usar este organograma</h3>
         <ul>
-            <li><strong>Clique único</strong> em qualquer caixa: abre a barra lateral com informações do colaborador.</li>
+            <li><strong>Clique único</strong> em qualquer caixa: abre a barra lateral com serviços do servidor.</li>
             <li><strong>Clique duplo</strong> na mesma caixa: fecha a barra lateral.</li>
-            <li><strong>Chefe com subordinados</strong> (como Eliane): clicar na caixa alterna a visualização dos filhos no organograma.</li>
             <li>O texto explicativo acima ajuda a entender a estrutura e as funções de cada membro.</li>
         </ul>
     </div>
@@ -60,6 +206,56 @@
     <p id="sidebar-function"></p>
 </div>
 
-<script src="script.js"></script>
+<script>
+// Funções dos colaboradores
+const functionsData = {
+    "Eliane": "funções.",
+    "Fagner": "funções.",
+    "Pss": "funções.",
+    "João": "funções.",
+    "Jonas": "funções."
+};
+
+//botão "Clique aqui"
+const toggleButton = document.getElementById("toggle-organograma");
+toggleButton.addEventListener("click", () => {
+    const elianeNode = document.getElementById("eliane");
+    const elianeLine = document.getElementById("eliane-line");
+    const children = document.getElementById("all-children");
+
+    if (elianeNode.style.display === "block") {
+        elianeNode.style.display = "none";
+        elianeLine.style.display = "none";
+        children.style.display = "none";
+    } else {
+        elianeNode.style.display = "block";
+        elianeLine.style.display = "block";
+        children.style.display = "block";
+    }
+});
+
+// Clique único abre sidebar, duplo fecha
+document.querySelectorAll(".node").forEach(node => {
+    let clickCount = 0;
+    node.addEventListener("click", (e) => {
+        clickCount++;
+        const name = node.dataset.name;
+        const sidebar = document.getElementById("sidebar");
+
+        setTimeout(() => {
+            if (clickCount === 1 && name) {
+                document.getElementById("sidebar-name").innerText = name;
+                document.getElementById("sidebar-function").innerText = functionsData[name] || "Função não cadastrada.";
+                sidebar.style.display = "block";
+            } else if (clickCount === 2) {
+                sidebar.style.display = "none";
+            }
+            clickCount = 0;
+        }, 250);
+        e.stopPropagation();
+    });
+});
+</script>
+
 </body>
 </html>
