@@ -25,28 +25,6 @@ toggleNode.addEventListener("click", () => {
     }
 });
 
-// Clique único abre sidebar, duplo fecha
-document.querySelectorAll(".node").forEach(node => {
-    let clickCount = 0;
-    node.addEventListener("click", (e) => {
-        clickCount++;
-        const name = node.dataset.name;
-        const sidebar = document.getElementById("sidebar");
-
-        setTimeout(() => {
-            if(clickCount === 1 && name) {
-                document.getElementById("sidebar-name").innerText = name;
-                document.getElementById("sidebar-function").innerText = functionsData[name] || "Função não cadastrada.";
-                sidebar.style.display = "block";
-            } else if(clickCount === 2) {
-                sidebar.style.display = "none";
-            }
-            clickCount = 0;
-        }, 250);
-        e.stopPropagation();
-    });
-});
-
 // Seleciona modal e elementos
 const modal = document.getElementById("modal");
 const modalTitle = document.getElementById("modalTitle");
@@ -77,11 +55,9 @@ modal.addEventListener("click", (e) => {
     }
 });
 
-// Fecha modal ao apertar a tecla "Esc" (opcional)
+// Fecha modal ao apertar a tecla "Esc"
 document.addEventListener("keydown", (e) => {
     if(e.key === "Escape"){
         modal.style.display = "none";
     }
 });
-
-
