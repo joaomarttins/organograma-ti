@@ -2,7 +2,6 @@
 body, html {
     margin: 0;
     padding: 0;
-    height: 100%;
     font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('fundo.jpg');
     background-size: cover;
@@ -16,23 +15,35 @@ header {
     background: #4e73df;
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 15px 20px;
     box-sizing: border-box;
     flex-wrap: wrap;
+    text-align: center;
 }
 header img {
     height: 60px;
     width: auto;
     border-radius: 8px;
     object-fit: cover;
-    margin-right: 15px;
+    margin-bottom: 10px;
 }
 header h1 {
     margin: 0;
     font-size: 1.8rem;
 }
 
-/* Barra lateral esquerda */
+/* Barras laterais */
+.left-panel, .sidebar {
+    background: rgba(255,255,255,0.95);
+    color: #111;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+}
+
+/* Left panel desktop */
 .left-panel {
     position: fixed;
     top: 100px;
@@ -44,24 +55,17 @@ header h1 {
     z-index: 1000;
 }
 
-/* Texto explicativo e tutorial */
-.explanation, .tutorial {
-    background: rgba(255,255,255,0.9);
-    color: #111;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    text-align: left;
-}
-.tutorial h3 {
-    margin-top: 0;
-    color: #4e73df;
-}
-.tutorial ul {
-    padding-left: 20px;
-}
-.tutorial li {
-    margin-bottom: 10px;
+/* Sidebar direita desktop */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 300px;
+    border-left: 5px solid #4e73df;
+    display: none;
+    overflow-y: auto;
+    z-index: 1000;
 }
 
 /* Conteúdo principal */
@@ -69,9 +73,9 @@ header h1 {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 20px;
     gap: 40px;
-    margin-left: 320px; /* espaço para barra lateral */
+    padding: 20px;
+    margin-left: 320px; /* espaço para left-panel */
 }
 
 .container {
@@ -92,6 +96,7 @@ header h1 {
     margin: 10px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    text-align: center;
 }
 .node:hover {
     transform: translateY(-3px);
@@ -117,23 +122,6 @@ header h1 {
     flex-wrap: wrap;
 }
 
-/* Sidebar direita */
-.sidebar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 300px;
-    background: rgba(255,255,255,0.95);
-    box-shadow: -3px 0 15px rgba(0,0,0,0.2);
-    padding: 20px;
-    border-left: 5px solid #4e73df;
-    color: #333;
-    display: none;
-    z-index: 1000;
-    overflow-y: auto;
-}
-
 /* Animação */
 @keyframes fadeIn {
     from {opacity:0;}
@@ -154,42 +142,38 @@ header h1 {
 
 /* Celular grande/médio */
 @media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        text-align: center;
-    }
     header img {
-        margin: 0 0 10px 0;
+        margin-bottom: 5px;
     }
     header h1 {
         font-size: 1.4rem;
     }
 
-    /* Left panel vira bloco no topo */
+    /* Left panel passa para topo */
     .left-panel {
         position: relative;
         top: 0;
         left: 0;
         width: 95%;
-        margin: 0 auto 10px auto;
-        padding: 10px;
-        gap: 10px;
+        margin: 10px auto;
     }
 
+    /* Conteúdo centralizado */
     .content {
         flex-direction: column;
         gap: 20px;
         padding: 10px;
-        margin-left: 0; /* remove espaço da left-panel fixa do desktop */
+        margin-left: 0;
     }
 
+    /* Caixas menores */
     .node {
         font-size: 0.9rem;
         padding: 10px 15px;
         margin: 5px;
     }
 
-    /* Sidebar direita centralizada */
+    /* Sidebar passa para rodapé */
     .sidebar {
         width: 95%;
         left: 50%;
