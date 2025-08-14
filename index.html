@@ -6,7 +6,7 @@
 <title>Organograma e Funções do TI</title>
      <link rel="stylesheet" href="style.css"> <!-- Aqui -->
 <style>
-/* Reset e background */
+/* Reset e background - PC */
 body, html {
     margin: 0;
     padding: 0;
@@ -17,69 +17,58 @@ body, html {
     color: white;
 }
 
-/* Header */
+/* Header - PC */
 header {
     width: 100%;
     background: #4e73df;
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 15px 20px;
     box-sizing: border-box;
-    flex-wrap: wrap;
 }
 header img {
-    height: 80px;
+    height: 60px;
     width: auto;
     border-radius: 8px;
     object-fit: cover;
-    margin-right: 20px;
+    margin-right: 15px;
 }
 header h1 {
     margin: 0;
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
-/* Barra lateral esquerda */
+/* Barra lateral esquerda fixa - PC */
 .left-panel {
     position: fixed;
-    top: 120px;
+    top: 100px;
     left: 20px;
-    width: 320px;
+    width: 300px;
     display: flex;
     flex-direction: column;
     gap: 20px;
     z-index: 1000;
 }
 
-/* Texto explicativo e tutorial */
+/* Texto explicativo e tutorial - PC */
 .explanation, .tutorial {
     background: rgba(255,255,255,0.9);
     color: #111;
-    padding: 20px;
+    padding: 15px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     text-align: left;
     font-size: 16px;
 }
-.tutorial h3 {
-    margin-top: 0;
-    color: #4e73df;
-}
-.tutorial ul {
-    padding-left: 20px;
-}
-.tutorial li {
-    margin-bottom: 10px;
-}
 
-/* Organograma */
+/* Organograma - PC */
 .content {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     padding: 20px;
     gap: 40px;
-    margin-left: 340px; /* espaço para left-panel */
+    margin-left: 320px; /* espaço para left-panel */
 }
 .container {
     display: flex;
@@ -88,11 +77,11 @@ header h1 {
     gap: 20px;
 }
 
-/* Caixas */
+/* Caixas - PC */
 .node {
     background: linear-gradient(135deg, #4e73df, #2e59d9);
     color: white;
-    padding: 18px 28px;
+    padding: 14px 24px;
     border-radius: 10px;
     cursor: pointer;
     display: inline-block;
@@ -101,16 +90,11 @@ header h1 {
     box-shadow: 0 6px 20px rgba(0,0,0,0.4);
     font-size: 1rem;
 }
-.node:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-}
 
-/* Filhos e linhas */
+/* Filhos e linhas - PC */
 .children {
     display: none;
     margin-top: 15px;
-    animation: fadeIn 0.4s ease;
 }
 .line {
     width: 2px;
@@ -125,7 +109,7 @@ header h1 {
     flex-wrap: wrap;
 }
 
-/* Sidebar direita */
+/* Sidebar direita - PC */
 .sidebar {
     position: fixed;
     top: 0;
@@ -142,38 +126,22 @@ header h1 {
     overflow-y: auto;
 }
 
-/* Animação */
-@keyframes fadeIn {
-    from {opacity:0;}
-    to {opacity:1;}
-}
-
 /* --------------------- Responsividade --------------------- */
-
-/* Tablets e telas médias */
-@media (max-width: 1024px) {
-    .left-panel, .sidebar {
-        width: 240px;
-    }
-    .content {
-        margin-left: 260px;
-    }
-}
-
-/* Celulares e telas menores */
 @media (max-width: 768px) {
+    /* Header */
     header {
         flex-direction: column;
         text-align: center;
     }
     header img {
         margin: 0 0 10px 0;
-        height: 70px;
+        height: 60px;
     }
     header h1 {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
     }
 
+    /* Left panel */
     .left-panel {
         position: relative;
         top: 0;
@@ -184,19 +152,20 @@ header h1 {
         gap: 10px;
     }
 
+    /* Organograma */
     .content {
         flex-direction: column;
         gap: 20px;
         padding: 10px;
         margin-left: 0;
     }
-
     .node {
         font-size: 1rem;
         padding: 12px 20px;
         margin: 8px;
     }
 
+    /* Sidebar */
     .sidebar {
         width: 95%;
         left: 50%;
@@ -211,19 +180,6 @@ header h1 {
     .explanation, .tutorial {
         font-size: 14px;
         padding: 12px;
-    }
-}
-
-/* Celulares muito pequenos */
-@media (max-width: 480px) {
-    .node {
-        width: 90%;
-        font-size: 0.9rem;
-        padding: 10px 15px;
-    }
-    .explanation, .tutorial {
-        font-size: 13px;
-        padding: 10px;
     }
 }
 
@@ -336,6 +292,7 @@ document.querySelectorAll(".node").forEach(node => {
 
 </body>
 </html>
+
 
 
 
