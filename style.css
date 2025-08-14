@@ -143,3 +143,54 @@ header h1 {
     z-index: 1000;
     overflow-y: auto;
 }
+
+/* Ajustes para celular */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+    header img {
+        margin: 0 0 10px 0;
+    }
+    header h1 {
+        font-size: 1.4rem;
+    }
+
+    /* Painel lateral vira bloco no topo */
+    .left-panel {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        gap: 10px;
+    }
+
+    /* Ajuste dos cards */
+    .node {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+        margin: 5px;
+    }
+
+    /* Organograma centralizado e com menos espaço */
+    .content {
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px;
+    }
+
+    /* Barra lateral ocupa a tela inteira no celular */
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        border-left: none;
+        border-top: 5px solid #4e73df;
+    }
+}
+
+
