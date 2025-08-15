@@ -56,7 +56,7 @@ header h1 {
     align-items: flex-start;
     gap: 50px;
     padding: 40px;
-    margin-left: 300px; /* espaço para left-panel desktop */
+    margin-left: 100px; /* espaço para left-panel desktop */
 }
 .container {
     display: flex;
@@ -231,4 +231,5 @@ header h1 {
         padding: 15px;
     }
 }
+
 
