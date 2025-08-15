@@ -6,192 +6,167 @@
 <title>Organograma e Funções do TI</title>
 <style>
 /* -------- RESET -------- */
-*{margin:0;padding:0;box-sizing:border-box;}
-body,html{
-    font-family:'Segoe UI',sans-serif;
-    background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('fundo.jpg') center/cover no-repeat fixed;
-    color:white;
-    line-height:1.5;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('fundo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    line-height: 1.5;
+    min-height: 100vh;
 }
 
 /* -------- HEADER -------- */
-header{
-    width:100%;
-    background:#4e73df;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    flex-wrap:wrap;
-    text-align:center;
-    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+header {
+    background: #4e73df;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
-header img{
-    height:70px;
-    border-radius:8px;
-    margin-bottom:10px;
+
+header img {
+    height: 70px;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto 10px;
 }
-header h1{
-    font-size:clamp(1.5rem,2.5vw,2.4rem);
-    font-weight:bold;
+
+header h1 {
+    font-size: clamp(1.5rem, 2.5vw, 2.4rem);
+}
+
+/* -------- LAYOUT -------- */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 40px;
+    max-width: 1400px;
+    margin: auto;
 }
 
 /* -------- PAINEL ESQUERDO -------- */
-.left-panel{
-    position:fixed;
-    top:110px;
-    left:20px;
-    width:300px;
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-    z-index:1000;
-    background:rgba(255,255,255,0.95);
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 4px 20px rgba(0,0,0,0.3);
-    color:#333;
-}
-.left-panel h2{
-    font-size:1.2rem;
-    margin-bottom:5px;
+.left-panel {
+    flex: 0 0 280px;
+    background: rgba(255,255,255,0.95);
+    color: #333;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    height: fit-content;
+    position: sticky;
+    top: 40px;
 }
 
-/* -------- CONTEÚDO -------- */
-.content{
-    display:flex;
-    justify-content:center;
-    padding:40px;
-    margin-left:340px;
-}
-.container{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:25px;
+/* -------- ORGANOGRAMA -------- */
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* -------- NODES -------- */
-.node{
-    background:linear-gradient(135deg,#4e73df,#2e59d9);
-    color:white;
-    padding:15px 25px;
-    border-radius:10px;
-    cursor:pointer;
-    transition:.2s;
-    box-shadow:0 6px 15px rgba(0,0,0,0.3);
-    text-align:center;
-    font-size:1rem;
-}
-.node:hover{
-    transform:translateY(-3px);
-    box-shadow:0 8px 25px rgba(0,0,0,0.5);
+.node {
+    background: linear-gradient(135deg, #4e73df, #2e59d9);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    font-size: clamp(1rem, 1.2vw, 1.2rem);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* -------- FILHOS -------- */
-.children{
-    display:none;
-    margin-top:20px;
-    animation:fadeIn .4s ease;
+.node:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 }
-.line{
-    width:3px;
-    height:25px;
-    background:#4e73df;
-    margin:auto;
+
+.children {
+    display: none;
+    margin-top: 20px;
 }
-.horizontal{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
+
+.line {
+    width: 3px;
+    height: 25px;
+    background: #4e73df;
+    margin: auto;
+}
+
+.horizontal {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 /* -------- SIDEBAR DIREITA -------- */
-.sidebar{
-    position:fixed;
-    top:0;
-    right:0;
-    height:100vh;
-    width:300px;
-    background:rgba(255,255,255,0.95);
-    box-shadow:-3px 0 20px rgba(0,0,0,0.3);
-    padding:20px;
-    border-left:5px solid #4e73df;
-    color:#333;
-    display:none;
-    z-index:1000;
-    overflow-y:auto;
+.sidebar {
+    flex: 0 0 300px;
+    background: rgba(255,255,255,0.95);
+    color: #333;
+    padding: 20px;
+    border-left: 5px solid #4e73df;
+    box-shadow: -3px 0 20px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: none;
 }
-
-/* -------- ANIMAÇÃO -------- */
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
 /* -------- RESPONSIVO -------- */
-/* Tablet */
-@media(max-width:1024px){
-    .left-panel,.sidebar{width:240px;padding:18px;}
-    .content{margin-left:260px;}
-}
-/* Celular */
-@media(max-width:768px){
-    header img{height:60px;}
-    .left-panel{
-        position:relative;
-        top:0;
-        left:0;
-        width:90%;
-        margin:10px auto;
+@media (max-width: 1024px) {
+    main {
+        flex-direction: column;
+        padding: 20px;
     }
-    .content{
-        flex-direction:column;
-        padding:15px;
-        margin-left:0;
+    .left-panel {
+        width: 100%;
+        position: relative;
+        top: 0;
     }
-    .node{
-        min-width:70%;
-        font-size:1rem;
-        padding:12px 18px;
+    .sidebar {
+        position: fixed;
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        top: auto;
+        height: auto;
+        border-left: none;
+        border-top: 5px solid #4e73df;
     }
-    .sidebar{
-        width:90%;
-        left:50%;
-        transform:translateX(-50%);
-        top:auto;
-        bottom:0;
-        height:auto;
-        border-left:none;
-        border-top:5px solid #4e73df;
-    }
-}
-/* Celular pequeno */
-@media(max-width:480px){
-    .node{width:95%;padding:10px 15px;font-size:0.95rem;}
-    .left-panel,.sidebar{padding:12px;}
 }
 </style>
 </head>
 <body>
 
 <header>
-    <div style="display:flex;flex-direction:column;align-items:center;">
-        <img src="brasao.png" alt="Brasão">
-        <h1>Organograma e Funções do TI</h1>
-    </div>
+    <img src="brasao.png" alt="Brasão">
+    <h1>Organograma e Funções do TI</h1>
 </header>
 
-<aside class="left-panel">
-    <p>Este organograma foi desenvolvido para mapear a estrutura do setor de TI, destacando cargos e responsabilidades.</p>
-    <div>
-        <h2 style="color:#4e73df;">Como usar</h2>
+<main>
+    <!-- Painel Esquerdo -->
+    <aside class="left-panel">
+        <p>Este organograma foi desenvolvido para mapear a estrutura do setor de TI, destacando cargos e responsabilidades.</p>
+        <h2 style="color:#4e73df; margin-top:15px;">Como usar</h2>
         <ul>
             <li>Clique em uma caixa para ver funções.</li>
-            <li>Clique fora ou no X para fechar.</li>
+            <li>Clique fora da janela ou no X para fechar.</li>
         </ul>
-    </div>
-</aside>
+    </aside>
 
-<main class="content">
+    <!-- Organograma -->
     <div class="container">
         <div class="node" onclick="toggleChildren(this)">Coordenador de TI</div>
         <div class="children">
@@ -202,28 +177,29 @@ header h1{
             </div>
         </div>
     </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <button onclick="closeSidebar()" style="background:none; border:none; font-size:20px; cursor:pointer; float:right;">✖</button>
+        <h2 id="sidebarTitle"></h2>
+        <p id="sidebarContent">Descrição das funções aparecerá aqui.</p>
+    </aside>
 </main>
 
-<aside class="sidebar" id="sidebar">
-    <button onclick="closeSidebar()" style="background:none;border:none;font-size:20px;cursor:pointer;float:right;">✖</button>
-    <h2 id="sidebarTitle"></h2>
-    <p id="sidebarContent">Descrição das funções aparecerá aqui.</p>
-</aside>
-
 <script>
-function toggleChildren(el){
-    const next=el.nextElementSibling;
-    if(next && next.classList.contains('children')){
-        next.style.display=next.style.display==='block'?'none':'block';
+function toggleChildren(element) {
+    const next = element.nextElementSibling;
+    if (next && next.classList.contains('children')) {
+        next.style.display = next.style.display === 'block' ? 'none' : 'block';
     }
 }
-function showSidebar(title){
-    document.getElementById('sidebarTitle').innerText=title;
-    document.getElementById('sidebarContent').innerText='Aqui vai a descrição da função.';
-    document.getElementById('sidebar').style.display='block';
+function showSidebar(title) {
+    document.getElementById('sidebarTitle').innerText = title;
+    document.getElementById('sidebarContent').innerText = 'Aqui vai a descrição da função.';
+    document.getElementById('sidebar').style.display = 'block';
 }
-function closeSidebar(){
-    document.getElementById('sidebar').style.display='none';
+function closeSidebar() {
+    document.getElementById('sidebar').style.display = 'none';
 }
 </script>
 
