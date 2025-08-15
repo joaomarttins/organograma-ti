@@ -3,95 +3,155 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Organograma</title>
+<title>Organograma TI</title>
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        display: flex;
-    }
+body, html {
+    margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #222; color: #fff;
+}
 
-    /* ===== Barra lateral padrão (PC) ===== */
-    .sidebar {
-        width: 250px;
-        background-color: #222;
-        color: white;
-        padding: 15px;
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        left: 0;
-        transition: transform 0.3s ease-in-out;
-    }
+/* Header */
+header {
+    display: flex; justify-content: center; align-items: center; padding: 15px; background:#4e73df;
+    flex-wrap: wrap; gap: 10px;
+}
+header img { height: 60px; border-radius:8px; }
+header h1 { margin:0; font-size:1.6rem; text-align:center; }
 
-    .sidebar h2 {
-        font-size: 20px;
-        margin-top: 0;
-    }
+/* Left Panel */
+.left-panel { position: fixed; top:100px; left:20px; width:280px; display:flex; flex-direction:column; gap:20px; z-index:1000; }
+.explanation, .tutorial { background: rgba(255,255,255,0.9); color:#111; padding:15px; border-radius:12px; }
+.tutorial h3 { margin-top:0; color:#4e73df; }
+.tutorial ul { padding-left:20px; }
+.tutorial li { margin-bottom:8px; }
 
-    .content {
-        margin-left: 250px;
-        padding: 20px;
-        flex: 1;
-    }
+/* Content */
+.content { display:flex; justify-content:center; align-items:flex-start; padding:20px; gap:30px; margin-left:320px; flex-wrap:wrap; }
+.container { display:flex; flex-direction:column; align-items:center; gap:20px; }
 
-    /* ===== Botão do menu (só aparece no celular) ===== */
-    .menu-btn {
-        display: none;
-        background-color: #444;
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-        position: fixed;
-        top: 10px;
-        left: 10px;
-        z-index: 1000;
-    }
+/* Node */
+.node {
+    background:#4e73df; color:#fff; padding:12px 20px; border-radius:12px; cursor:pointer;
+    display:inline-block; margin:8px; min-width:120px; text-align:center; transition:0.2s; box-shadow:0 4px 12px rgba(0,0,0,0.3);
+}
+.node:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,0.4); background:#2e59d9; }
 
-    /* ===== Estilo para celular ===== */
-    @media (max-width: 768px) {
-        .menu-btn {
-            display: block;
-        }
+/* Children and lines */
+.children { display:none; margin-top:15px; }
+.line { width:2px; height:20px; background:#4e73df; margin:auto; }
+.horizontal { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
 
-        .sidebar {
-            transform: translateX(-100%);
-            position: fixed;
-            height: 100%;
-            z-index: 999;
-        }
+/* Modal */
+.modal {
+    display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6);
+    justify-content:center; align-items:center; z-index:2000;
+}
+.modal-content {
+    background:#fff; color:#111; padding:20px; border-radius:12px; width:90%; max-width:400px; position:relative;
+}
+.modal-close { position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer; }
 
-        .sidebar.active {
-            transform: translateX(0);
-        }
-
-        .content {
-            margin-left: 0;
-        }
-    }
+/* Responsivo */
+@media(max-width:768px){
+    .left-panel { position:relative; top:0; left:0; width:95%; margin:10px auto; }
+    .content { flex-direction:column; margin-left:0; gap:20px; padding:10px; }
+    .node { min-width:90%; }
+}
 </style>
 </head>
 <body>
 
-<button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
+<header>
+    <img src="logo.jpg" alt="Logo Prefeitura">
+    <h1>Organograma e Funções do TI</h1>
+</header>
 
-<div class="sidebar" id="sidebar">
-    <h2>Funções</h2>
-    <p>- Função 1</p>
-    <p>- Função 2</p>
-    <p>- Função 3</p>
+<div class="left-panel">
+    <div class="explanation">
+        Este organograma foi desenvolvido para mapear a estrutura do setor de TI, destacando cargos e responsabilidades.
+    </div>
+    <div class="tutorial">
+        <h3>Como usar</h3>
+        <ul>
+            <li>Clique em uma caixa para ver funções.</li>
+            <li>Clique fora da janela ou no X para voltar.</li>
+        </ul>
+    </div>
 </div>
 
 <div class="content">
-    <h1>Organograma</h1>
-    <p>Este organograma foi feito para mapear as funções e setores de TI da prefeitura...</p>
+    <div class="container">
+        <div class="node" id="toggle-organograma">Abrir Organograma</div>
+
+        <div class="node" id="eliane" data-name="Eliane" style="display:none;">Eliane - Diretora</div>
+        <div class="line" id="eliane-line" style="display:none;"></div>
+
+        <div class="children" id="all-children" style="display:none;">
+            <div class="horizontal">
+                <div class="node" data-name="Fagner">Fagner - Técnico</div>
+                <div class="node" data-name="Pss">Pss - Técnico</div>
+            </div>
+            <div class="line"></div>
+            <div class="horizontal">
+                <div class="node" data-name="João">João - Auxiliar</div>
+                <div class="node" data-name="Jonas">Jonas - Auxiliar</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="modal-close" id="modalClose">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalText"></p>
+    </div>
 </div>
 
 <script>
-    function toggleMenu() {
-        document.getElementById("sidebar").classList.toggle("active");
-    }
+// Dados
+const functionsData = {
+    "Eliane":"Responsável pela direção geral.",
+    "Fagner":"Manutenção e suporte técnico.",
+    "Pss":"Suporte e manutenção de equipamentos.",
+    "João":"Auxílio em suporte técnico.",
+    "Jonas":"Atendimento de chamados."
+};
+
+// Toggle organograma
+document.getElementById("toggle-organograma").addEventListener("click", () => {
+    const eliane = document.getElementById("eliane");
+    const line = document.getElementById("eliane-line");
+    const children = document.getElementById("all-children");
+    const show = eliane.style.display === "none";
+    eliane.style.display = show ? "block" : "none";
+    line.style.display = show ? "block" : "none";
+    children.style.display = show ? "block" : "none";
+});
+
+// Modal
+const modal = document.getElementById("modal");
+const modalTitle = document.getElementById("modalTitle");
+const modalText = document.getElementById("modalText");
+const modalClose = document.getElementById("modalClose");
+
+function openModal(name){
+    modalTitle.innerText = name;
+    modalText.innerText = functionsData[name] || "Função não cadastrada";
+    modal.style.display = "flex";
+}
+function closeModal(){ modal.style.display = "none"; }
+
+modalClose.addEventListener("click", closeModal);
+modal.addEventListener("click",(e)=>{ if(e.target===modal) closeModal(); });
+document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") closeModal(); });
+
+// Clicar nos nodes abre modal
+document.querySelectorAll(".node[data-name]").forEach(node=>{
+    node.addEventListener("click",(e)=>{
+        openModal(node.dataset.name);
+    });
+});
 </script>
 
 </body>
