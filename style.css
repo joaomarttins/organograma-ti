@@ -1,118 +1,131 @@
-/* Reset e background */
-body, html {
+/* ---------------- RESET E BASE ---------------- */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
     font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('fundo.jpg');
     background-size: cover;
     background-position: center;
     color: white;
+    line-height: 1.5;
 }
 
-/* Header */
+/* ---------------- HEADER ---------------- */
 header {
     width: 100%;
     background: #4e73df;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 25px;
+    padding: 20px;
     flex-wrap: wrap;
     text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
+
 header img {
-    height: 90px;
+    height: 70px;
     width: auto;
     border-radius: 8px;
     object-fit: cover;
     margin-bottom: 10px;
 }
+
 header h1 {
     margin: 0;
-    font-size: 2.4rem;
+    font-size: clamp(1.5rem, 2.5vw, 2.4rem);
+    font-weight: bold;
 }
 
-/* Left panel */
+/* ---------------- PAINEL ESQUERDO ---------------- */
 .left-panel {
     position: fixed;
-    top: 120px;
+    top: 110px;
     left: 20px;
-    width: 320px;
+    width: 300px;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
     z-index: 1000;
     background: rgba(255,255,255,0.95);
-    padding: 25px;
+    padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    box-sizing: border-box;
+    color: #333;
 }
 
-/* Conteúdo principal */
+/* ---------------- CONTEÚDO ---------------- */
 .content {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 50px;
+    gap: 40px;
     padding: 40px;
-    margin-left: 100px; /* espaço para left-panel desktop */
+    margin-left: 340px; /* espaço para painel esquerdo */
 }
+
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 25px;
 }
 
-/* Caixas do organograma */
+/* ---------------- NODES DO ORGANOGRAMA ---------------- */
 .node {
     background: linear-gradient(135deg, #4e73df, #2e59d9);
     color: white;
-    padding: 20px 35px;
-    border-radius: 12px;
+    padding: 15px 25px;
+    border-radius: 10px;
     cursor: pointer;
     display: inline-block;
-    margin: 15px;
+    margin: 10px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
     text-align: center;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1.2vw, 1.2rem);
 }
+
 .node:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 }
 
-/* Filhos e linhas */
+/* ---------------- ESTRUTURA FILHOS ---------------- */
 .children {
     display: none;
-    margin-top: 25px;
+    margin-top: 20px;
     animation: fadeIn 0.4s ease;
 }
+
 .line {
     width: 3px;
-    height: 30px;
+    height: 25px;
     background: #4e73df;
     margin: auto;
 }
+
 .horizontal {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 20px;
     flex-wrap: wrap;
 }
 
-/* Sidebar direita */
+/* ---------------- SIDEBAR DIREITA ---------------- */
 .sidebar {
     position: fixed;
     top: 0;
     right: 0;
     height: 100vh;
-    width: 320px;
+    width: 300px;
     background: rgba(255,255,255,0.95);
     box-shadow: -3px 0 20px rgba(0,0,0,0.3);
-    padding: 25px;
+    padding: 20px;
     border-left: 5px solid #4e73df;
     color: #333;
     display: none;
@@ -120,90 +133,58 @@ header h1 {
     overflow-y: auto;
 }
 
-/* Modal */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-}
-.modal-content {
-    background: #fff;
-    color: #111;
-    padding: 20px;
-    border-radius: 12px;
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-    position: relative;
-}
-.modal-close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-/* Animação */
+/* ---------------- ANIMAÇÃO ---------------- */
 @keyframes fadeIn {
-    from {opacity:0;}
-    to {opacity:1;}
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-/* ---------------- Responsividade ---------------- */
+/* ---------------- RESPONSIVIDADE ---------------- */
 
-/* Tablet e telas médias */
+/* Tablet */
 @media (max-width: 1024px) {
     .left-panel, .sidebar {
         width: 240px;
-        padding: 20px;
+        padding: 18px;
     }
     .content {
         margin-left: 260px;
-        gap: 35px;
-    }
-    .node {
-        font-size: 1.1rem;
-        padding: 18px 30px;
+        gap: 30px;
     }
 }
 
 /* Celular médio/grande */
 @media (max-width: 768px) {
-    header img { height: 80px; }
-    header h1 { font-size: 2rem; }
+    header img {
+        height: 60px;
+    }
+    header h1 {
+        font-size: 1.5rem;
+    }
 
     .left-panel {
         position: relative;
         top: 0;
         left: 0;
-        width: 95%;
-        margin: 15px auto;
-        padding: 20px;
+        width: 90%;
+        margin: 10px auto;
     }
 
     .content {
         flex-direction: column;
-        gap: 30px;
-        padding: 20px;
+        gap: 25px;
+        padding: 15px;
         margin-left: 0;
     }
 
     .node {
-        font-size: 1.15rem;
-        padding: 16px 25px;
-        margin: 10px;
+        font-size: 1rem;
+        padding: 12px 18px;
+        min-width: 70%;
     }
 
     .sidebar {
-        width: 95%;
+        width: 90%;
         left: 50%;
         transform: translateX(-50%);
         bottom: 0;
@@ -211,7 +192,6 @@ header h1 {
         border-left: none;
         border-top: 5px solid #4e73df;
         position: fixed;
-        padding: 20px;
     }
 }
 
@@ -219,17 +199,11 @@ header h1 {
 @media (max-width: 480px) {
     .node {
         width: 95%;
-        max-width: 340px;
-        font-size: 1.1rem;
-        padding: 15px 20px;
+        max-width: 320px;
+        font-size: 0.95rem;
+        padding: 10px 15px;
     }
     .left-panel, .sidebar {
-        padding: 15px;
-    }
-    .explanation, .tutorial {
-        font-size: 0.9rem;
-        padding: 15px;
+        padding: 12px;
     }
 }
-
-
