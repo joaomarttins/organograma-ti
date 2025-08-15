@@ -50,11 +50,26 @@ header h1 { margin:0; font-size:1.6rem; text-align:center; }
 }
 .modal-close { position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer; }
 
+/* Sidebar PC */
+.sidebar {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    width: 280px;
+    background: rgba(255,255,255,0.9);
+    color: #111;
+    padding: 15px;
+    border-radius: 12px;
+    display: none;
+    z-index: 1000;
+}
+
 /* Responsivo */
 @media(max-width:768px){
     .left-panel { position:relative; top:0; left:0; width:95%; margin:10px auto; }
     .content { flex-direction:column; margin-left:0; gap:20px; padding:10px; }
     .node { min-width:90%; }
+    .sidebar { display:none !important; }
 }
 </style>
 </head>
@@ -108,6 +123,9 @@ header h1 { margin:0; font-size:1.6rem; text-align:center; }
     </div>
 </div>
 
+<!-- Sidebar PC -->
+<div class="sidebar" id="sidebar"></div>
+
 <script>
 // Dados
 const functionsData = {
@@ -146,28 +164,19 @@ modalClose.addEventListener("click", closeModal);
 modal.addEventListener("click",(e)=>{ if(e.target===modal) closeModal(); });
 document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") closeModal(); });
 
-// Sidebar
+// Sidebar PC
+const sidebar = document.getElementById("sidebar");
 function openSidebar(name){
-    let sidebar = document.querySelector(".sidebar");
-    if(!sidebar){
-        sidebar = document.createElement("div");
-        sidebar.classList.add("sidebar");
-        document.body.appendChild(sidebar);
-    }
-    sidebar.innerHTML = <h2>${name}</h2><p>${functionsData[name] || "Função não cadastrada"}</p>;
+    sidebar.innerHTML = `<h2>${name}</h2><p>${functionsData[name] || "Função não cadastrada"}</p>`;
     sidebar.style.display = "block";
 }
-function closeSidebar(){
-    const sidebar = document.querySelector(".sidebar");
-    if(sidebar) sidebar.style.display = "none";
-}
 
-// Clique nos nodes → dependendo do tamanho da tela
+// Clique nos nodes → modal ou sidebar
 document.querySelectorAll(".node[data-name]").forEach(node=>{
     node.addEventListener("click",(e)=>{
         const name = node.dataset.name;
         if(window.innerWidth <= 768){
-            openModal(name); // Celular
+            openModal(name); // celular
         } else {
             openSidebar(name); // PC
         }
@@ -177,5 +186,3 @@ document.querySelectorAll(".node[data-name]").forEach(node=>{
 
 </body>
 </html>
-
-
