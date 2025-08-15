@@ -6,7 +6,13 @@
 <title>Organograma TI</title>
 <style>
 body, html {
-    margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #222; color: #fff;
+    margin: 0; 
+    padding: 0; 
+    font-family: 'Segoe UI', sans-serif; 
+    color: #fff;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('fundo.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 /* Header */
@@ -26,7 +32,7 @@ header h1 { margin:0; font-size:1.6rem; text-align:center; }
     color:#111; 
     padding:25px; 
     border-radius:12px; 
-    font-size: 1.1rem; /* maior no PC */
+    font-size: 1.1rem; 
 }
 .tutorial h3 { margin-top:0; color:#4e73df; font-size:1.2rem; }
 .tutorial ul { padding-left:20px; }
@@ -61,15 +67,14 @@ header h1 { margin:0; font-size:1.6rem; text-align:center; }
 /* Sidebar direita PC */
 .sidebar {
     position: fixed;
-    top: 0; /* topo */
+    top: 0; 
     right: 0;
     width: 320px;
-    height: 100vh; /* altura total do PC */
+    height: 100vh; 
     background: rgba(255,255,255,0.95);
     color: #111;
     padding: 25px;
     border-left: 5px solid #4e73df;
-    border-radius: 0;
     display: none;
     z-index: 1000;
     overflow-y: auto;
@@ -80,7 +85,7 @@ header h1 { margin:0; font-size:1.6rem; text-align:center; }
     .left-panel { position:relative; top:0; left:0; width:95%; margin:10px auto; padding:20px; }
     .content { flex-direction:column; margin-left:0; gap:20px; padding:10px; }
     .node { min-width:90%; }
-    .sidebar { display:none !important; } /* sidebar desaparece no celular */
+    .sidebar { display:none !important; } 
 }
 </style>
 </head>
@@ -192,8 +197,3 @@ document.querySelectorAll(".node[data-name]").forEach(node=>{
             openSidebar(name); // PC
         }
     });
-});
-</script>
-
-</body>
-</html>
