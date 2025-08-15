@@ -1,201 +1,92 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Organograma TI</title>
-<style>
-body, html {
-    margin: 0; 
-    padding: 0; 
-    font-family: 'Segoe UI', sans-serif; 
-    color: #fff;
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('fundo.jpg');
-    background-size: cover;
-    background-position: center;
-}
-
-/* Header */
-header {
-    display: flex; justify-content: center; align-items: center; padding: 15px; background:#4e73df;
-    flex-wrap: wrap; gap: 10px;
-}
-header img { height: 60px; border-radius:8px; }
-header h1 { margin:0; font-size:1.6rem; text-align:center; }
-
-/* Left Panel */
-.left-panel { 
-    position: fixed; top:100px; left:20px; width:320px; display:flex; flex-direction:column; gap:25px; z-index:1000; 
-}
-.explanation, .tutorial { 
-    background: rgba(255,255,255,0.95); 
-    color:#111; 
-    padding:25px; 
-    border-radius:12px; 
-    font-size: 1.1rem; 
-}
-.tutorial h3 { margin-top:0; color:#4e73df; font-size:1.2rem; }
-.tutorial ul { padding-left:20px; }
-.tutorial li { margin-bottom:10px; }
-
-/* Content */
-.content { display:flex; justify-content:center; align-items:flex-start; padding:20px; gap:30px; margin-left:360px; flex-wrap:wrap; }
-.container { display:flex; flex-direction:column; align-items:center; gap:20px; }
-
-/* Node */
-.node {
-    background:#4e73df; color:#fff; padding:12px 20px; border-radius:12px; cursor:pointer;
-    display:inline-block; margin:8px; min-width:120px; text-align:center; transition:0.2s; box-shadow:0 4px 12px rgba(0,0,0,0.3);
-}
-.node:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,0.4); background:#2e59d9; }
-
-/* Children and lines */
-.children { display:none; margin-top:15px; }
-.line { width:2px; height:20px; background:#4e73df; margin:auto; }
-.horizontal { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
-
-/* Modal */
-.modal {
-    display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6);
-    justify-content:center; align-items:center; z-index:2000;
-}
-.modal-content {
-    background:#fff; color:#111; padding:20px; border-radius:12px; width:90%; max-width:400px; position:relative;
-}
-.modal-close { position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer; }
-
-/* Sidebar direita PC */
-.sidebar {
-    position: fixed;
-    top: 0; 
-    right: 0;
-    width: 320px;
-    height: 100vh; 
-    background: rgba(255,255,255,0.95);
-    color: #111;
-    padding: 25px;
-    border-left: 5px solid #4e73df;
-    display: none;
-    z-index: 1000;
-    overflow-y: auto;
-}
-
-/* Responsivo */
-@media(max-width:768px){
-    .left-panel { position:relative; top:0; left:0; width:95%; margin:10px auto; padding:20px; }
-    .content { flex-direction:column; margin-left:0; gap:20px; padding:10px; }
-    .node { min-width:90%; }
-    .sidebar { display:none !important; } 
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organograma e Funções do TI</title>
+    <style>
+        /* Aqui entra o CSS que te mandei antes */
+        /* Cole exatamente o CSS que enviei anteriormente aqui */
+    </style>
 </head>
 <body>
 
-<header>
-    <img src="logo.jpg" alt="Logo Prefeitura">
-    <h1>Organograma e Funções do TI</h1>
-</header>
+    <!-- HEADER -->
+    <header>
+        <div style="display:flex; flex-direction:column; align-items:center;">
+            <img src="brasao.png" alt="Brasão">
+            <h1>Organograma e Funções do TI</h1>
+        </div>
+    </header>
 
-<div class="left-panel">
-    <div class="explanation">
-        Este organograma foi desenvolvido para mapear a estrutura do setor de TI, destacando cargos e responsabilidades.
-    </div>
-    <div class="tutorial">
-        <h3>Como usar</h3>
-        <ul>
-            <li>Clique em uma caixa para ver funções.</li>
-            <li>Clique fora da janela ou no X para voltar.</li>
-        </ul>
-    </div>
-</div>
+    <!-- PAINEL LATERAL ESQUERDO -->
+    <aside class="left-panel">
+        <div class="card">
+            <p>Este organograma foi desenvolvido para mapear a estrutura do setor de TI, destacando cargos e responsabilidades.</p>
+        </div>
+        <div class="card">
+            <h2 style="color:#4e73df;">Como usar</h2>
+            <ul>
+                <li>Clique em uma caixa para ver funções.</li>
+                <li>Clique fora da janela ou no X para voltar.</li>
+            </ul>
+        </div>
+        <button style="background:#4e73df; color:white; border:none; padding:10px 15px; border-radius:8px; cursor:pointer;">
+            Abrir Organograma
+        </button>
+    </aside>
 
-<div class="content">
-    <div class="container">
-        <div class="node" id="toggle-organograma">Abrir Organograma</div>
-
-        <div class="node" id="eliane" data-name="Eliane" style="display:none;">Eliane - Diretora</div>
-        <div class="line" id="eliane-line" style="display:none;"></div>
-
-        <div class="children" id="all-children" style="display:none;">
-            <div class="horizontal">
-                <div class="node" data-name="Fagner">Fagner - Técnico</div>
-                <div class="node" data-name="Pss">Pss - Técnico</div>
-            </div>
-            <div class="line"></div>
-            <div class="horizontal">
-                <div class="node" data-name="João">João - Auxiliar</div>
-                <div class="node" data-name="Jonas">Jonas - Auxiliar</div>
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="content">
+        <div class="container">
+            <!-- Nó principal -->
+            <div class="node" onclick="toggleChildren(this)">Coordenador de TI</div>
+            
+            <!-- Filhos -->
+            <div class="children">
+                <div class="line"></div>
+                <div class="horizontal">
+                    <div class="node" onclick="showSidebar('Analista de Sistemas')">Analista de Sistemas</div>
+                    <div class="node" onclick="showSidebar('Técnico de Suporte')">Técnico de Suporte</div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </main>
 
-<!-- Modal -->
-<div class="modal" id="modal">
-    <div class="modal-content">
-        <span class="modal-close" id="modalClose">&times;</span>
-        <h2 id="modalTitle"></h2>
-        <p id="modalText"></p>
-    </div>
-</div>
+    <!-- SIDEBAR DIREITA -->
+    <aside class="sidebar" id="sidebar">
+        <button onclick="closeSidebar()" style="background:none; border:none; font-size:20px; cursor:pointer; float:right;">✖</button>
+        <h2 id="sidebarTitle"></h2>
+        <p id="sidebarContent">Descrição das funções aparecerá aqui.</p>
+    </aside>
 
-<!-- Sidebar PC -->
-<div class="sidebar" id="sidebar"></div>
-
-<script>
-// Dados
-const functionsData = {
-    "Eliane":"Responsável pela direção geral.",
-    "Fagner":"Manutenção e suporte técnico.",
-    "Pss":"Suporte e manutenção de equipamentos.",
-    "João":"Auxílio em suporte técnico.",
-    "Jonas":"Atendimento de chamados."
-};
-
-// Toggle organograma
-document.getElementById("toggle-organograma").addEventListener("click", () => {
-    const eliane = document.getElementById("eliane");
-    const line = document.getElementById("eliane-line");
-    const children = document.getElementById("all-children");
-    const show = eliane.style.display === "none";
-    eliane.style.display = show ? "block" : "none";
-    line.style.display = show ? "block" : "none";
-    children.style.display = show ? "block" : "none";
-});
-
-// Modal
-const modal = document.getElementById("modal");
-const modalTitle = document.getElementById("modalTitle");
-const modalText = document.getElementById("modalText");
-const modalClose = document.getElementById("modalClose");
-
-function openModal(name){
-    modalTitle.innerText = name;
-    modalText.innerText = functionsData[name] || "Função não cadastrada";
-    modal.style.display = "flex";
-}
-function closeModal(){ modal.style.display = "none"; }
-
-modalClose.addEventListener("click", closeModal);
-modal.addEventListener("click",(e)=>{ if(e.target===modal) closeModal(); });
-document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") closeModal(); });
-
-// Sidebar PC
-const sidebar = document.getElementById("sidebar");
-function openSidebar(name){
-    sidebar.innerHTML = `<h2>${name}</h2><p>${functionsData[name] || "Função não cadastrada"}</p>`;
-    sidebar.style.display = "block";
-}
-
-// Clique nos nodes → modal ou sidebar
-document.querySelectorAll(".node[data-name]").forEach(node=>{
-    node.addEventListener("click",()=>{
-        const name = node.dataset.name;
-        if(window.innerWidth <= 768){
-            openModal(name); // celular
-        } else {
-            openSidebar(name); // PC
+    <!-- SCRIPTS -->
+    <script>
+        function toggleChildren(element) {
+            const next = element.nextElementSibling;
+            if (next && next.classList.contains('children')) {
+                next.style.display = next.style.display === 'block' ? 'none' : 'block';
+            }
         }
-    });
-});
-</script>
+
+        function showSidebar(title) {
+            document.getElementById('sidebarTitle').innerText = title;
+            document.getElementById('sidebarContent').innerText = 'Aqui vai a descrição da função.';
+            document.getElementById('sidebar').style.display = 'block';
+        }
+
+        function closeSidebar() {
+            document.getElementById('sidebar').style.display = 'none';
+        }
+
+        // Fechar clicando fora no mobile
+        window.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('sidebar');
+            if (e.target === sidebar) {
+                closeSidebar();
+            }
+        });
+    </script>
+
+</body>
+</html>
