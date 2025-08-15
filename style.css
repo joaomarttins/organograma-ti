@@ -58,7 +58,6 @@ header h1 {
     padding: 40px;
     margin-left: 360px; /* espaço para left-panel desktop */
 }
-
 .container {
     display: flex;
     flex-direction: column;
@@ -121,6 +120,37 @@ header h1 {
     overflow-y: auto;
 }
 
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+.modal-content {
+    background: #fff;
+    color: #111;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+}
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
 /* Animação */
 @keyframes fadeIn {
     from {opacity:0;}
@@ -147,14 +177,9 @@ header h1 {
 
 /* Celular médio/grande */
 @media (max-width: 768px) {
-    header img {
-        height: 80px;
-    }
-    header h1 {
-        font-size: 2rem;
-    }
+    header img { height: 80px; }
+    header h1 { font-size: 2rem; }
 
-    /* Left panel topo */
     .left-panel {
         position: relative;
         top: 0;
@@ -164,7 +189,6 @@ header h1 {
         padding: 20px;
     }
 
-    /* Conteúdo centralizado */
     .content {
         flex-direction: column;
         gap: 30px;
@@ -172,14 +196,12 @@ header h1 {
         margin-left: 0;
     }
 
-    /* Caixas maiores */
     .node {
-        font-size: 1.2rem;
-        padding: 18px 25px;
+        font-size: 1.15rem;
+        padding: 16px 25px;
         margin: 10px;
     }
 
-    /* Sidebar fixa rodapé */
     .sidebar {
         width: 95%;
         left: 50%;
@@ -205,58 +227,7 @@ header h1 {
         padding: 15px;
     }
     .explanation, .tutorial {
-        font-size: 15px;
+        font-size: 0.9rem;
         padding: 15px;
-
-        /* Modal popup */
-.modal {
-    display: none; /* escondido por padrão */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5); /* sombra atrás */
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-}
-
-/* Modal */
-.modal {
-    display: none; /* escondido por padrão */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-}
-
-.modal-content {
-    background: #fff;
-    color: #111;
-    padding: 20px;
-    border-radius: 12px;
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-    position: relative;
-}
-
-.modal-close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-
     }
 }
-
-
