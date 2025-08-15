@@ -1,3 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organograma TI</title>
+<style>
+body, html {
+    margin: 0; 
+    padding: 0; 
+    font-family: 'Segoe UI', sans-serif; 
+    color: #fff;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('fundo.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Header */
+header {
+    display: flex; justify-content: center; align-items: center; padding: 15px; background:#4e73df;
+    flex-wrap: wrap; gap: 10px;
+}
+header img { height: 60px; border-radius:8px; }
+header h1 { margin:0; font-size:1.6rem; text-align:center; }
+
+/* Left Panel */
+.left-panel { 
+    position: fixed; top:100px; left:20px; width:320px; display:flex; flex-direction:column; gap:25px; z-index:1000; 
+}
+.explanation, .tutorial { 
+    background: rgba(255,255,255,0.95); 
+    color:#111; 
+    padding:25px; 
+    border-radius:12px; 
+    font-size: 1.1rem; 
+}
+.tutorial h3 { margin-top:0; color:#4e73df; font-size:1.2rem; }
+.tutorial ul { padding-left:20px; }
+.tutorial li { margin-bottom:10px; }
+
+/* Content */
+.content { display:flex; justify-content:center; align-items:flex-start; padding:20px; gap:30px; margin-left:360px; flex-wrap:wrap; }
+.container { display:flex; flex-direction:column; align-items:center; gap:20px; }
+
+/* Node */
+.node {
+    background:#4e73df; color:#fff; padding:12px 20px; border-radius:12px; cursor:pointer;
+    display:inline-block; margin:8px; min-width:120px; text-align:center; transition:0.2s; box-shadow:0 4px 12px rgba(0,0,0,0.3);
+}
+.node:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,0.4); background:#2e59d9; }
+
+/* Children and lines */
+.children { display:none; margin-top:15px; }
+.line { width:2px; height:20px; background:#4e73df; margin:auto; }
+.horizontal { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
+
+/* Modal */
+.modal {
+    display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6);
+    justify-content:center; align-items:center; z-index:2000;
+}
+.modal-content {
+    background:#fff; color:#111; padding:20px; border-radius:12px; width:90%; max-width:400px; position:relative;
+}
+.modal-close { position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer; }
+
+/* Sidebar direita PC */
+.sidebar {
+    position: fixed;
+    top: 0; 
+    right: 0;
+    width: 320px;
+    height: 100vh; 
+    background: rgba(255,255,255,0.95);
+    color: #111;
+    padding: 25px;
+    border-left: 5px solid #4e73df;
+    display: none;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+/* Responsivo */
+@media(max-width:768px){
+    .left-panel { position:relative; top:0; left:0; width:95%; margin:10px auto; padding:20px; }
+    .content { flex-direction:column; margin-left:0; gap:20px; padding:10px; }
+    .node { min-width:90%; }
+    .sidebar { display:none !important; } 
+}
+</style>
+</head>
+<body>
+
+<header>
+    <img src="logo.jpg" alt="Logo Prefeitura">
+    <h1>Organograma e Funções do TI</h1>
+</header>
+
+<div class="left-panel">
+    <div class="explanation">
+        Este organograma foi desenvolvido para mapear a estrutura do setor de TI, destacando cargos e responsabilidades.
+    </div>
+    <div class="tutorial">
+        <h3>Como usar</h3>
+        <ul>
+            <li>Clique em uma caixa para ver funções.</li>
+            <li>Clique fora da janela ou no X para voltar.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container">
+        <div class="node" id="toggle-organograma">Abrir Organograma</div>
+
+        <div class="node" id="eliane" data-name="Eliane" style="display:none;">Eliane - Diretora</div>
+        <div class="line" id="eliane-line" style="display:none;"></div>
+
+        <div class="children" id="all-children" style="display:none;">
+            <div class="horizontal">
+                <div class="node" data-name="Fagner">Fagner - Técnico</div>
+                <div class="node" data-name="Pss">Pss - Técnico</div>
+            </div>
+            <div class="line"></div>
+            <div class="horizontal">
+                <div class="node" data-name="João">João - Auxiliar</div>
+                <div class="node" data-name="Jonas">Jonas - Auxiliar</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="modal-close" id="modalClose">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalText"></p>
+    </div>
+</div>
+
+<!-- Sidebar PC -->
+<div class="sidebar" id="sidebar"></div>
+
 <script>
 // Dados
 const functionsData = {
