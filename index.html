@@ -109,6 +109,7 @@ header h1 { margin:0; font-size:1.6rem; text-align:center; }
 </div>
 
 <script>
+<script>
 // Dados
 const functionsData = {
     "Eliane":"Responsável pela direção geral.",
@@ -146,13 +147,36 @@ modalClose.addEventListener("click", closeModal);
 modal.addEventListener("click",(e)=>{ if(e.target===modal) closeModal(); });
 document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") closeModal(); });
 
-// Clicar nos nodes abre modal
+// Sidebar
+function openSidebar(name){
+    let sidebar = document.querySelector(".sidebar");
+    if(!sidebar){
+        sidebar = document.createElement("div");
+        sidebar.classList.add("sidebar");
+        document.body.appendChild(sidebar);
+    }
+    sidebar.innerHTML = <h2>${name}</h2><p>${functionsData[name] || "Função não cadastrada"}</p>;
+    sidebar.style.display = "block";
+}
+function closeSidebar(){
+    const sidebar = document.querySelector(".sidebar");
+    if(sidebar) sidebar.style.display = "none";
+}
+
+// Clique nos nodes → dependendo do tamanho da tela
 document.querySelectorAll(".node[data-name]").forEach(node=>{
     node.addEventListener("click",(e)=>{
-        openModal(node.dataset.name);
+        const name = node.dataset.name;
+        if(window.innerWidth <= 768){
+            openModal(name); // Celular
+        } else {
+            openSidebar(name); // PC
+        }
     });
 });
+</script>
 </script>
 
 </body>
 </html>
+
